@@ -1,0 +1,9 @@
+config:
+  target: "http://3.96.177.141/"
+  phases:
+    - duration: 30
+      arrivalRate: 200
+scenarios:
+  - flow:
+      - get:
+          url: "/"
