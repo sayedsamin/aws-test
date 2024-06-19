@@ -1,9 +1,9 @@
 config:
-  target: "http://3.96.177.141/"
+  target: "http://35.183.126.75/"
   phases:
     - duration: 30
-      arrivalRate: 200
+      arrivalRate: 1600
 scenarios:
   - flow:
       - get:
-          url: "/"
+          url: "/db-request"
