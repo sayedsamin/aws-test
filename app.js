@@ -1,7 +1,7 @@
 const express = require("express");
 // const serverless = require("serverless-http");
 const app = express();
-const port = 80; // Default HTTP port
+// const port = 80; // Default HTTP port
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
@@ -30,7 +30,7 @@ app.get("/db-request", async (req, res) => {
 //   console.log(`Example app listening at http://localhost:${port}`);
 // });
 
-// const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
