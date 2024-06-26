@@ -52,7 +52,7 @@ app.get("/hash", async (req, res) => {
 //   console.log(`Example app listening at http://localhost:${port}`);
 // });
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
