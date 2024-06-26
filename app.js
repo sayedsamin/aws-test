@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 // const serverless = require("serverless-http");
 const app = express();
 // const port = 80; // Default HTTP port
@@ -12,7 +13,7 @@ function simulateDatabaseRequest() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({ data: "This is a simulated database response" });
-    }, 100); // Simulating a 100ms delay for the database request
+    }, 500); // Simulating a 100ms delay for the database request
   });
 }
 
@@ -26,11 +27,32 @@ app.get("/db-request", async (req, res) => {
   }
 });
 
+async function hashPassword(password) {
+  try {
+    const saltRounds = 10; // Number of salt rounds for bcrypt (can be adjusted)
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    return hashedPassword;
+  } catch (error) {
+    console.error("Error hashing password:", error);
+    throw error;
+  }
+}
+
+app.get("/hash", async (req, res) => {
+  try {
+    const plainTextPassword = "yourPassword123";
+    const hashedPassword = await hashPassword(plainTextPassword);
+    res.json(hashedPassword);
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
 // app.listen(port, () => {
 //   console.log(`Example app listening at http://localhost:${port}`);
 // });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 80;
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

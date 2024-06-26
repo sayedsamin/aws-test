@@ -1,9 +1,18 @@
 config:
-  target: "http://35.183.126.75/"
+  target: "http://15.222.239.237:3000/"
   phases:
     - duration: 30
-      arrivalRate: 1600
+      arrivalRate: 2000
+
+  defaults:
+    headers:
+      Content-Type: "application/json"
+  plugins:
+    metrics-by-endpoint: {} # Optional: if you want endpoint-specific metrics
+  reports:
+    json:
+      file: "artillery_log.json"
 scenarios:
   - flow:
       - get:
-          url: "/db-request"
+          url: "/"
