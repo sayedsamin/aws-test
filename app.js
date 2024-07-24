@@ -29,7 +29,7 @@ app.get("/db-request", async (req, res) => {
 
 async function hashPassword(password) {
   try {
-    const saltRounds = 7; // Number of salt rounds for bcrypt (can be adjusted)
+    const saltRounds = 5; // Number of salt rounds for bcrypt (can be adjusted)
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     return hashedPassword;
   } catch (error) {
